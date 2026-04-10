@@ -3,290 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Study Planner | Smart Study Planning</title>
+    <meta name="description" content="Smart Study Planner, an AI-powered study schedule generator for students.">
+    <meta name="keywords" content="study planner, exam deadlines, study materials, resource library, personalized study schedule">
+    <title>Smart Study Planner | Stay on Track, Ace Your Exams</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Outfit&amp;family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
-        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            background-color: #1a1d23;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
-        
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 2rem;
         }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 100px 0 80px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-        
-        .header p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        .features {
-            background: white;
-            padding: 80px 0;
-        }
-        
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 20px;
-        }
-        
-        .feature-card {
-            background: #f8f9fa;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-        
-        .feature-card p {
-            color: #666;
-        }
-        
-        .how-it-works {
-            background: #f0f4ff;
-            padding: 80px 0;
-        }
-        
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-        }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            background: #667eea;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+        .hero {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 20px;
+            justify-content: space-around;
+            height: 100vh;
+            background-image: linear-gradient(to bottom, #212529, #1a1d23);
         }
-        
-        .signup {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .signup h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .signup-form {
-            max-width: 500px;
-            margin: 30px auto 0;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .signup-form input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .signup-form button {
-            padding: 15px 30px;
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .hero h1 {
+            font-size: 2rem;
             font-weight: 600;
+            color: #fff;
         }
-        
-        .signup-form button:hover {
-            background: #ff5252;
+        .hero button {
+            background-color: #0060fa;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
-        
-        .footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px;
+        .hero button:hover {
+            background-color: #0050fa;
         }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+        .feature {
+            background-color: #333;
+            padding: 1rem;
+            border-radius: 0.2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+        }
+        .feature h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .how-it-works {
+            padding: 2rem;
+        }
+        .step {
+            background-color: #333;
+            padding: 1rem;
+            border-radius: 0.2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+        }
+        .email-form {
+            padding: 2rem;
+        }
+        .email-form input {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.2rem;
+            background-color: #333;
+            color: #fff;
+            width: 100%;
+        }
+        .email-form button {
+            background-color: #0060fa;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .email-form button:hover {
+            background-color: #0050fa;
+        }
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 600;
+            color: #fff;
+            animation: loading 2s ease-in-out;
+        }
+        @keyframes loading {
+            0% {
+                opacity: 0;
             }
-            
-            .signup-form {
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        .success {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 600;
+            color: #00ff00;
+        }
+        @keyframes success {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        footer a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #66ff00;
+        }
+        @media (max-width: 768px) {
+            .hero {
                 flex-direction: column;
             }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .how-it-works {
+                padding: 1rem;
+            }
+            .email-form {
+                padding: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
+    <div class="container">
+        <div class="hero">
             <h1>Smart Study Planner</h1>
-            <p>Auto-generate study schedule based on deadlines and ace your exams!</p>
-            <a href="#" class="cta-button">Start Planning Free →</a>
+            <p>AI-powered study schedule generator for students, enabling them to create personalized plans that ensure they meet exam deadlines and achieve academic success.</p>
+            <button>Celebrate Your Success</button>
         </div>
-    </div>
-    
-    <div class="features">
-        <div class="container">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Add Subjects</h3>
-                    <p>Add all your courses and exam dates</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Smart Schedule</h3>
-                    <p>AI generates optimal study plan</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Daily Planner</h3>
-                    <p>View and track daily tasks</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Reminders</h3>
-                    <p>Get notified about upcoming studies</p>
-                </div>
-                
+        <div class="features">
+            <div class="feature">
+                <h2>Personalized Study Schedule Generation</h2>
+                <p>Generate a tailored study plan based on your exam deadlines, course curriculum, and learning style.</p>
+            </div>
+            <div class="feature">
+                <h2>Exam Countdown and Reminders</h2>
+                <p>Track and remind yourself of upcoming exam deadlines and study milestones.</p>
+            </div>
+            <div class="feature">
+                <h2>Study Materials and Resource Library</h2>
+                <p>Access a curated library of study materials, notes, and online resources relevant to your courses and exam prep.</p>
             </div>
         </div>
-    </div>
-    
-    <div class="how-it-works">
-        <div class="container">
+        <div class="how-it-works">
             <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Add Your Subjects</h3>
-                    <p>List all your courses and upcoming exams</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Set Deadlines</h3>
-                    <p>Input exam dates and assignment deadlines</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Your Schedule</h3>
-                    <p>AI generates your personalized study plan</p>
-                </div>
+            <div class="step">
+                <h3>Step 1: Get Started</h3>
+                <p>Sign up for Smart Study Planner and add your exam deadlines, course curriculum, and learning style.</p>
+            </div>
+            <div class="step">
+                <h3>Step 2: Generate Your Study Plan</h3>
+                <p>Our AI-powered algorithm will generate a tailored study plan based on your input.</p>
+            </div>
+            <div class="step">
+                <h3>Step 3: Stay on Track</h3>
+                <p>Track your progress, stay organized, and access study materials and resources whenever you need them.</p>
             </div>
         </div>
-    </div>
-    
-    <div class="signup">
-        <div class="container">
-            <h2>Ready to Ace Your Exams?</h2>
-            <p>Join thousands of students who study smarter, not harder</p>
-            <form class="signup-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Get Started Free</button>
-            </form>
+        <div class="email-form">
+            <h2>Sign Up for Smart Study Planner</h2>
+            <input type="email" placeholder="Enter your email address">
+            <button id="email-button" disabled>Submit</button>
         </div>
     </div>
-    
-    <div class="footer">
-        <div class="container">
-            <p>&copy; 2025 Smart Study Planner. All rights reserved.</p>
-        </div>
-    </div>
-</body>
-</html>
+    <div class="loading" style="display: none;">Loading...</div>
+    <div class="success" style="display: none;">Success!</div>
+    <footer>
+        <p>&copy; 2023 Smart Study Planner. All rights reserved.</p>
+        <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+    </footer>
+    <script>
+        const emailButton = document.getElementById('email-button');
+        emailButton.addEventListener('click', () => {
+            const emailInput = document.querySelector('.email-form input');
+            if (emailInput.value === '') {
+                alert('Please enter your email address.');
+            } else {
+                emailInput.disabled = true;
+                emailButton.style.background = 'gray';
+                emailButton.style.cursor = 'default';
+                document.querySelector('.loading').style.display = 'block';
+                setTimeout(() => {
+                    document.querySelector('.success').style.display = 'block';
+                    setTimeout(() => {
+                        document.querySelector('.loading').style.display = 'none';
+                        document.querySelector('.success').style.display = 'none';
+                        emailInput.disabled = false;
+                        emailButton.style.background = '#0060fa';
+                        emailButton.style.cursor = 'pointer';
+                    }, 200
