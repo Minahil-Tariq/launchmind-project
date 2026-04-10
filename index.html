@@ -3,290 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Study Planner | Smart Study Planning</title>
+    <meta name="description" content="Smart Study Planner - AI-powered study schedule generator for students">
+    <meta name="keywords" content="study planner, ai, learning, productivity, students">
+    <meta name="theme-color" content="#282a3f">
+    <title>Smart Study Planner</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;700&display=swap">
     <style>
-        * {
+        :root {
+            --dark-blue: #0f172a;
+            --light-blue: #232e46;
+            --yellow: #f7dc6f;
+            --dark-gray: #282a3f;
+            --dark-indigo: #333333;
+            --white: #ffffff;
+            --neon-green: #33cc33;
+            --neon-light-blue: #33ccff;
+        }
+
+        body {
+            background-color: var(--dark-gray);
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 100px 0 80px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-        
-        .header p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        .features {
-            background: white;
-            padding: 80px 0;
-        }
-        
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 20px;
-        }
-        
-        .feature-card {
-            background: #f8f9fa;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-        
-        .feature-card p {
-            color: #666;
-        }
-        
-        .how-it-works {
-            background: #f0f4ff;
-            padding: 80px 0;
-        }
-        
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-        }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            background: #667eea;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            color: var(--light-blue);
+        }
+
+        .hero-section {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 20px;
+            background-image: linear-gradient(var(--light-blue), var(--dark-blue));
+            backdrop-filter: blur(2px);
+            padding: 50px;
+            height: 80vh;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
-        
-        .signup {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
+
+        .hero-section h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--yellow);
+            margin-bottom: 10px;
         }
-        
-        .signup h2 {
-            font-size: 2.5rem;
+
+        .hero-section p {
+            font-size: 18px;
+            font-weight: 500;
             margin-bottom: 20px;
         }
-        
-        .signup-form {
-            max-width: 500px;
-            margin: 30px auto 0;
-            display: flex;
-            gap: 10px;
+
+        .hero-section button {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--yellow);
+            color: var(--dark-blue);
+            cursor: pointer;
         }
-        
-        .signup-form input {
-            flex: 1;
+
+        .hero-section button:hover {
+            background-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-section button:active {
+            transform: scale(0.9);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            background-color: var(--dark-gray);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(2px);
+        }
+
+        .feature-card {
+            background-color: var(--dark-gray);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--yellow);
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--light-blue);
+            margin-bottom: 20px;
+        }
+
+        .how-it-works-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--dark-gray);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .how-it-works-section .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 20px;
+            background-color: var(--dark-gray);
+        }
+
+        .how-it-works-section .step img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .how-it-works-section .step p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--light-blue);
+            margin-bottom: 10px;
+        }
+
+        .email-sign-up-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--dark-gray);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .email-sign-up-form input {
             padding: 15px;
             border: none;
-            border-radius: 5px;
-            font-size: 1rem;
+            border-radius: 10px;
+            background-color: var(--dark-gray);
+            color: var(--light-blue);
+            margin-bottom: 20px;
         }
-        
-        .signup-form button {
-            padding: 15px 30px;
-            background: #ff6b6b;
-            color: white;
+
+        .email-sign-up-form input:hover {
+            background-color: var(--light-blue);
+        }
+
+        .email-sign-up-form button {
+            padding: 15px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            background-color: var(--yellow);
+            color: var(--dark-blue);
             cursor: pointer;
-            font-weight: 600;
         }
-        
-        .signup-form button:hover {
-            background: #ff5252;
+
+        .email-sign-up-form button:hover {
+            background-color: var(--neon-green);
         }
-        
+
+        .email-sign-up-form button:active {
+            transform: scale(0.9);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
         .footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px;
+            padding: 20px;
+            background-color: var(--dark-gray);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .signup-form {
-                flex-direction: column;
-            }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer ul li a {
+            text-decoration: none;
+            color: var(--light-blue);
+        }
+
+        .footer ul li a:hover {
+            color: var(--neon-green);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <h1>Smart Study Planner</h1>
-            <p>Auto-generate study schedule based on deadlines and ace your exams!</p>
-            <a href="#" class="cta-button">Start Planning Free →</a>
+    <div class="hero-section">
+        <h1>Smart Study Planner</h1>
+        <p>AI-powered study schedule generator for students</p>
+        <button>Get Started</button>
+    </div>
+    <div class="features-section">
+        <div class="feature-card">
+            <h2>Customizable Study Schedule</h2>
+            <p>Input your exam deadlines and preferred study schedule to receive a personalized plan</p>
+        </div>
+        <div class="feature-card">
+            <h2>Real-time Notifications</h2>
+            <p>Receive reminders and notifications when you need to study or review material</p>
+        </div>
+        <div class="feature-card">
+            <h2>Study Materials Library</h2>
+            <p>Access a library of study materials, including textbook summaries, practice exams, and past papers</p>
+        </div>
+        <div class="feature-card">
+            <h2>Progress Tracking</h2>
+            <p>Track your progress and identify areas where you need improvement</p>
+        </div>
+        <div class="feature-card">
+            <h2>AI-powered Recommendation Engine</h2>
+            <p>Receive recommendations for study materials, study techniques, and time management strategies based on your learning style and performance</p>
         </div>
     </div>
-    
-    <div class="features">
-        <div class="container">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Add Subjects</h3>
-                    <p>Add all your courses and exam dates</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Smart Schedule</h3>
-                    <p>AI generates optimal study plan</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Daily Planner</h3>
-                    <p>View and track daily tasks</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Reminders</h3>
-                    <p>Get notified about upcoming studies</p>
-                </div>
-                
-            </div>
+    <div class="how-it-works-section">
+        <h2>How it Works</h2>
+        <div class="step">
+            <img src="https://image.flaticon.com/icons/png/512/179/179145.png" alt="Step 1">
+            <p>Input your exam deadlines and preferred study schedule</p>
         </div>
-    </div>
-    
-    <div class="how-it-works">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Add Your Subjects</h3>
-                    <p>List all your courses and upcoming exams</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Set Deadlines</h3>
-                    <p>Input exam dates and assignment deadlines</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Your Schedule</h3>
-                    <p>AI generates your personalized study plan</p>
-                </div>
-            </div>
+        <div class="step">
+            <img src="https://image.flaticon.com/icons/png/512/179/179144.png" alt="Step 2">
+            <p>Receive a personalized study plan and schedule</p>
         </div>
-    </div>
-    
-    <div class="signup">
-        <div class="container">
-            <h2>Ready to Ace Your Exams?</h2>
-            <p>Join thousands of students who study smarter, not harder</p>
-            <form class="signup-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Get Started Free</button>
-            </form>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <div class="container">
-            <p>&copy; 2025 Smart Study Planner. All rights reserved.</p>
-        </div>
-    </div>
-</body>
-</html>
+        <div class="step">
+            <img src="https://image.flaticon.com/icons/png/512/179/179146.png" alt="Step 3">
+            <p
