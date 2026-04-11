@@ -3,290 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Study Planner | Smart Study Planning</title>
+    <title>Smart Study Planner</title>
+    <meta name="description" content="Personalised study schedules for better academic performance">
+    <meta name="keywords" content="Smart Study Planner, Study Schedules, Academic Performance">
+    <meta name="author" content="Your Name">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Smart Study Planner">
+    <meta property="og:description" content="Personalised study schedules for better academic performance">
+    <meta property="og:image" content="https://example.com/smart-study-planner-image.jpg">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+        
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
+            color: #fff;
+            background-color: #161616;
+            overflow-x: hidden;
+        }
+        
+        .glassmorpheim {
+            position: relative;
+            backdrop-filter: blur(20px);
+            background-color: #222;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.2s ease-in-out;
+        }
+        
+        .glassmorpheim:hover {
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.7);
+        }
+        
+        .glassmorpheim button:hover {
+            animation: pulse 0.4s ease-in-out forwards;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            }
+        }
+        
+        .cta {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff69b4;
             color: #333;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .cta:hover {
+            background-color: #ff33cc;
         }
         
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 100px 0 80px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-        
-        .header p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        .features {
-            background: white;
-            padding: 80px 0;
-        }
-        
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+        .cta button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff69b4;
             color: #333;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
         }
         
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 20px;
+        .cta button:hover {
+            background-color: #ff33cc;
         }
         
-        .feature-card {
-            background: #f8f9fa;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-        
-        .feature-card p {
-            color: #666;
-        }
-        
-        .how-it-works {
-            background: #f0f4ff;
-            padding: 80px 0;
-        }
-        
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-        }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            background: #667eea;
-            color: white;
+        .cta img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 20px;
+            object-fit: cover;
+            margin-right: 1rem;
+            filter: grayscale(1);
         }
         
-        .signup {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .signup h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .signup-form {
-            max-width: 500px;
-            margin: 30px auto 0;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .signup-form input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .signup-form button {
-            padding: 15px 30px;
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .signup-form button:hover {
-            background: #ff5252;
-        }
-        
-        .footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-        
+        /* Responsive styles */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .glassmorpheim {
+                padding: 1rem;
             }
-            
-            .signup-form {
-                flex-direction: column;
+        }
+        
+        @media (max-width: 576px) {
+            .glassmorpheim {
+                padding: 0.5rem;
             }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
+            .cta {
+                font-size: 16px;
             }
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature {
+            width: calc(25% - 20px);
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        
+        .feature img {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px 10px 0 0;
+            object-fit: cover;
+        }
+        
+        .feature h3 {
+            margin: 10px 0;
+        }
+        
+        .feature p {
+            color: #aaa;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
+    <header>
+        <nav class="nav">
+            <a href="#" class="logo">Smart Study Planner</a>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How it Works</a></li>
+                <li><a href="#sign-up">Sign Up</a></li>
+            </ul>
+            <button id="nav-toggle" class="toggle-nav">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        <div class="hero" id="hero">
             <h1>Smart Study Planner</h1>
-            <p>Auto-generate study schedule based on deadlines and ace your exams!</p>
-            <a href="#" class="cta-button">Start Planning Free →</a>
+            <h2>Personalize your study schedule for better academic performance</h2>
+            <button class="cta">Get Started</button>
         </div>
-    </div>
-    
-    <div class="features">
-        <div class="container">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Add Subjects</h3>
-                    <p>Add all your courses and exam dates</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Smart Schedule</h3>
-                    <p>AI generates optimal study plan</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Daily Planner</h3>
-                    <p>View and track daily tasks</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Reminders</h3>
-                    <p>Get notified about upcoming studies</p>
-                </div>
-                
+    </header>
+    <main>
+        <div class="features">
+            <div class="feature">
+                <img src="assets/calendar.jpg" alt="Exam Calendar">
+                <h3>Exam Calendar Integration</h3>
+                <p>Input exam dates and deadlines for automatic inclusion in the study schedule</p>
+            </div>
+            <div class="feature">
+                <img src="assets/schedule.jpg" alt="Personalized Study Schedule">
+                <h3>Personalized Study Schedule Generation</h3>
+                <p>Automatically generates a daily or weekly study schedule based on user input</p>
+            </div>
+            <div class="feature">
+                <img src="assets/tasks.jpg" alt="Task Prioritization">
+                <h3>Task Prioritization and Organization</h3>
+                <p>Enable users to prioritize and organize tasks based on importance and deadlines</p>
+            </div>
+            <div class="feature">
+                <img src="assets/progress.jpg" alt="Progress Tracking">
+                <h3>Progress Tracking and Analysis</h3>
+                <p>Provides users with insights into their study progress, identifying areas of improvement</p>
             </div>
         </div>
-    </div>
-    
-    <div class="how-it-works">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Add Your Subjects</h3>
-                    <p>List all your courses and upcoming exams</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Set Deadlines</h3>
-                    <p>Input exam dates and assignment deadlines</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Your Schedule</h3>
-                    <p>AI generates your personalized study plan</p>
-                </div>
-            </div>
+        <div class="how-it-works" id="how-it-works">
+            <h2>How it Works</h2>
+            <ul>
+                <li>
+                    <img src="assets/signup.jpg" alt="Sign Up">
+                    <p>Sign up for a free account</p>
+                </li>
+                <li>
+                    <img src="assets/calendar.jpg" alt="Add Exam Dates">
+                    <p>Add exam dates and deadlines</p>
+                </li>
+                <li>
+                    <img src="assets/schedule.jpg" alt="Generate Study Schedule">
+                    <p>Generate a customized study schedule</p>
+                </li>
+            </ul>
         </div>
-    </div>
-    
-    <div class="signup">
-        <div class="container">
-            <h2>Ready to Ace Your Exams?</h2>
-            <p>Join thousands of students who study smarter, not harder</p>
-            <form class="signup-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Get Started Free</button>
+        <div class="sign-up" id="sign-up">
+            <h2>Get your personalized study schedule</h2>
+            <form action="" onsubmit="return false;">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Get Started</button>
             </form>
+            <div class="success-message" style="display: none;">Thanks for signing up! You'll receive an email with instructions</div>
         </div>
-    </div>
-    
-    <div class="footer">
-        <div class="container">
-            <p>&copy; 2025 Smart Study Planner. All rights reserved.</p>
-        </div>
-    </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Smart Study Planner | All Rights Reserved</p>
+    </footer>
+    <script>
+        const form = document.querySelector('form');
+        const successMessage = document.querySelector('.success-message');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
