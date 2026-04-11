@@ -3,290 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Study Planner | Smart Study Planning</title>
+    <meta name="description" content="Smart Study Planner - Create personalized study schedules to improve academic performance and reduce stress.">
+    <meta name="keywords" content="study planner, exam registration, time management, study materials, progress tracking">
+    <title>Smart Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
             line-height: 1.6;
-            color: #333;
+            background-color: #121212;
+            color: #fff;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
         }
-        
+
+        body[data-dark-mode="true"] {
+            background-color: #1c1c1c;
+        }
+
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #121212;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 100px 0 80px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-        
-        .header p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        .features {
-            background: white;
-            padding: 80px 0;
-        }
-        
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 20px;
-        }
-        
-        .feature-card {
-            background: #f8f9fa;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-        
-        .feature-card p {
-            color: #666;
-        }
-        
-        .how-it-works {
-            background: #f0f4ff;
-            padding: 80px 0;
-        }
-        
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-        }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            background: #667eea;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+
+        nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             display: flex;
             align-items: center;
+        }
+
+        nav .nav-btn {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 20px;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
         }
-        
-        .signup {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
+
+        nav .nav-btn:hover {
+            transform: scale(1.1);
         }
-        
-        .signup h2 {
-            font-size: 2.5rem;
+
+        nav .nav-btn:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-style: solid;
+            border-width: 0 15px 15px 0;
+            border-color: transparent transparent #fff transparent;
+            width: 0;
+            height: 0;
+        }
+
+        nav .nav-btn:after {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        nav .nav-btn:hover:after {
+            opacity: 1;
+        }
+
+        nav .nav-btn:active {
+            transform: scale(0.9);
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-weight: 300;
+            font-size: 24px;
             margin-bottom: 20px;
         }
-        
-        .signup-form {
-            max-width: 500px;
-            margin: 30px auto 0;
+
+        .hero {
+            position: relative;
+            background-color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            align-items: center;
         }
-        
-        .signup-form input {
-            flex: 1;
-            padding: 15px;
+
+        .hero .cta-btn {
+            background-color: #007bff;
             border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .signup-form button {
-            padding: 15px 30px;
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
             font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
         }
-        
-        .signup-form button:hover {
-            background: #ff5252;
+
+        .hero .cta-btn:hover {
+            background-color: #0056b3;
         }
-        
+
+        .hero .cta-btn:active {
+            transform: scale(0.9);
+        }
+
+        .hero h1 {
+            font-weight: 600;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-weight: 300;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        .feature-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-card h3 {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 20px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .how-it-works {
+            padding: 20px;
+            background-color: #000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+        }
+
+        .how-it-works .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .how-it-works .step h4 {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .how-it-works .step p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .email-form {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .email-form .input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: none;
+            background-color: #333;
+            border-radius: 10px;
+        }
+
+        .email-form .btn {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .email-form .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .email-form .btn:active {
+            transform: scale(0.9);
+        }
+
         .footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #121212;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
         }
-        
+
+        .footer .social {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .footer .social a {
+            margin-right: 10px;
+            font-size: 24px;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social a:hover {
+            color: #007bff;
+        }
+
+        .footer p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .hero {
+                padding: 10px;
+                background-color: #000;
             }
-            
-            .signup-form {
-                flex-direction: column;
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
             }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
+
+            .how-it-works {
+                padding: 10px;
+                background-color: #000;
             }
         }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <div class="container">
-            <h1>Smart Study Planner</h1>
-            <p>Auto-generate study schedule based on deadlines and ace your exams!</p>
-            <a href="#" class="cta-button">Start Planning Free →</a>
-        </div>
-    </div>
-    
-    <div class="features">
-        <div class="container">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Add Subjects</h3>
-                    <p>Add all your courses and exam dates</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Smart Schedule</h3>
-                    <p>AI generates optimal study plan</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Daily Planner</h3>
-                    <p>View and track daily tasks</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Reminders</h3>
-                    <p>Get notified about upcoming studies</p>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-    
-    <div class="how-it-works">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Add Your Subjects</h3>
-                    <p>List all your courses and upcoming exams</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Set Deadlines</h3>
-                    <p>Input exam dates and assignment deadlines</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Your Schedule</h3>
-                    <p>AI generates your personalized study plan</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="signup">
-        <div class="container">
-            <h2>Ready to Ace Your Exams?</h2>
-            <p>Join thousands of students who study smarter, not harder</p>
-            <form class="signup-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Get Started Free</button>
-            </form>
-        </div>
-    </div>
-    
-    <div class="footer">
-        <div class="container">
-            <p>&copy; 2025 Smart Study Planner. All rights reserved.</p>
-        </div>
-    </div>
-</body>
-</html>
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 5px;
+                background-color: #000;
+            }
+
+            .features {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .how-it-works {
+                padding: 5px;
+                background-color: #000;
