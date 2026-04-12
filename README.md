@@ -1,168 +1,103 @@
-# 🚀 LaunchMind: Smart Study Planner (Multi-Agent System)
+# LaunchMind: Smart Study Planner
 
-## 📌 Startup Idea
+## 🚀 Startup Idea
+**Smart Study Planner** is an AI-powered study schedule generator designed for students who struggle to manage multiple exam deadlines. By taking in course subjects and exam dates, it auto-generates personalized daily study plans and sends smart reminders, ensuring students stay on track without the stress of manual planning.
 
-Smart Study Planner is an AI-powered tool designed to help students manage their time effectively by automatically generating study schedules based on deadlines, subjects, and priorities. It reduces stress caused by poor time management and helps students stay consistent with their study goals.
+## 🏗️ Agent Architecture
 
----
-
-## 🤖 Agent Architecture
-
-This system is built using a Multi-Agent System (MAS) where different AI agents collaborate to simulate a startup workflow.
-
-### Agents:
-
-* **CEO Agent (Orchestrator)**
-  Breaks down the startup idea into tasks, assigns them to other agents, reviews outputs, and manages feedback loops.
-
-* **Product Agent**
-  Creates a structured product specification including value proposition, user personas, features, and user stories.
-
-* **Engineer Agent**
-  Generates a landing page and interacts with GitHub by creating commits and pull requests.
-
-* **Marketing Agent**
-  Generates marketing content, sends emails, and posts launch updates to Slack.
-
-* **QA Agent (Reviewer)**
-  Reviews outputs from Engineer and Marketing agents and provides feedback to ensure quality.
-
----
-
-### 🔁 Communication Flow
-
-```
-User → CEO Agent
-      ↓
-Product Agent → Engineer Agent → Marketing Agent
-      ↓                    ↓
-     QA Agent (Review & Feedback)
-      ↓
-      CEO Agent (Final Decision & Summary)
+```mermaid
+graph TD
+    System[System] -->|Injects Idea| CEO[CEO Agent]
+    
+    CEO -->|Task 1: Spec| Product[Product Agent]
+    Product -.->|Spec + Confirmation| CEO
+    
+    Product -->|Task 2: UI Code| Engineer[Engineer Agent]
+    Engineer -->|Generates HTML| LLM_E[LLM]
+    LLM_E --> Engineer
+    Engineer -->|Branch → Commit → Issue → PR| GitHub[(GitHub)]
+    Engineer -.->|PR/Issue Links Result| CEO
+    
+    Product -->|Task 3: Marketing Copy| Marketing[Marketing Agent]
+    Marketing -->|Generates Copy| LLM_M[LLM]
+    LLM_M --> Marketing
+    Marketing -->|Sends Email| SendGrid[(SendGrid)]
+    Marketing -->|Posts Message| Slack[(Slack)]
+    Marketing -.->|Copy Result| CEO
+    
+    CEO -->|Reviews Output| CEO
+    CEO -.->|Revision Request| Product
+    CEO -.->|Revision Request| Engineer
+    CEO -.->|Revision Request| Marketing
+    
+    CEO -->|Final Summary| Slack
 ```
 
-Agents communicate using structured JSON messages via a message bus.
+### Explanation of Architecture:
+1. **System** injects the startup idea to the **CEO**.
+2. **CEO** instructs the **Product** agent to define the product.
+3. **Product** generates the structured specification and directly tasks the **Engineer** and **Marketing** agents. It also confirms back to the CEO.
+4. **Engineer** generates an HTML landing page using an LLM, pushes code to GitHub, creates an issue, opens a PR, and returns the links to the CEO.
+5. **Marketing** generates marketing copy, emails it via SendGrid, posts a message to Slack Block Kit, and returns the result to the CEO.
+6. **CEO** reviews the results from all agents. If anything fails its strict standards, it sends back a `revision_request` forcing that agent to iterate. Otherwise, it approves.
+7. Upon full approval, the **CEO** posts a final summary to Slack.
 
----
+## 🛠️ Setup Instructions
 
-## ⚙️ Setup Instructions
-
-### 1. Clone the Repository
-
-```
+### 1. Clone the repository
+```bash
 git clone https://github.com/Minahil-Tariq/launchmind-project.git
-cd launchmind-project
+cd launchmind
 ```
 
----
+### 2. Install dependencies
+```bash
+python -m venv venv
+# Windows:
+.\venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
 
-### 2. Install Dependencies
-
-```
 pip install -r requirements.txt
 ```
 
----
-
 ### 3. Set Environment Variables
-
-Create a `.env` file and add:
-
+Copy `.env.example` to `.env` and fill out your keys:
+```bash
+cp .env.example .env
 ```
-OPENAI_API_KEY=your_key
-GITHUB_TOKEN=your_token
-SLACK_BOT_TOKEN=your_token
-SENDGRID_API_KEY=your_key
-GITHUB_REPO=yourusername/repo-name
-```
-
----
+Ensure you provide:
+- `GROQ_API_KEY`
+- `GITHUB_TOKEN` (Ensure it has repo permissions)
+- `GITHUB_REPO` (Format: `username/repo`)
+- `SENDGRID_API_KEY`, `FROM_EMAIL`, `TO_EMAIL`
+- `SLACK_BOT_TOKEN`
 
 ### 4. Run the System
-
-```
+```bash
 python main.py
 ```
+> **Note:** If rate limit errors happen with Groq, the system implements an organic auto-pause-and-retry. Just wait.
 
----
+## 🌐 Platform Integrations
 
-## 🔗 Platform Integrations
+- **GitHub API (Engineer Agent):** 
+  - Authenticated via Personal Access Token (`GITHUB_TOKEN`)
+  - Fetches base repository SHA
+  - Creates a new git branch
+  - Commits the LLM-generated HTML (`index.html`) to the branch
+  - Creates a GitHub Issue for tracking
+  - Opens a Pull Request from the new branch to main
+- **Slack API (Marketing & CEO Agents):**
+  - Authenticated via Bot User OAuth Token (`SLACK_BOT_TOKEN`)
+  - **Marketing Agent** uses Block Kit to post a rich message announcing the product launch with the PR URL to `#launches`.
+  - **CEO Agent** posts final completion status to `#launches`.
+- **SendGrid API (Marketing Agent):**
+  - Authenticated via API key (`SENDGRID_API_KEY`)
+  - Constructs and dispatches a cold-outreach HTML email dynamically generated by the LLM.
 
-This project integrates with real-world platforms:
+## 🔗 Live Links
 
-* **GitHub**
-
-  * Engineer Agent creates branches, commits code, and opens pull requests.
-
-* **Slack**
-
-  * Marketing Agent posts launch announcements to the `#launches` channel.
-
-* **SendGrid (Email)**
-
-  * Marketing Agent sends outreach emails to a test inbox.
-
----
-
-## 💬 Slack Workspace
-
-Screenshots:
-<img width="959" height="537" alt="image" src="https://github.com/user-attachments/assets/e75708b6-ea72-4980-9bc6-ead76bd4d2a2" />
-
-
----
-
-## 🔗 GitHub Pull Request
-
-Engineer Agent PR:
-https://github.com/Minahil-Tariq/launchmind-project/pull/128
-
----
-
-## 📁 Project Structure
-
-```
-launchmind/
-│
-├── agents/
-│   ├── ceo_agent.py
-│   ├── product_agent.py
-│   ├── engineer_agent.py
-│   ├── marketing_agent.py
-│   └── qa_agent.py
-│
-├── main.py
-├── message_bus.py
-├── requirements.txt
-├── .env.example
-├── .gitignore
-└── README.md
-```
-
----
-
-## ✅ Features Implemented
-
-* Multi-agent collaboration using structured JSON messages
-* Real GitHub integration (commit + pull request)
-* Slack bot messaging using API
-* Email sending using SendGrid
-* Dynamic decision-making via CEO agent
-
----
-
-## 👥 Team Members
-
-* Student 1 → CEO Agent
-* Student 2 → Product + QA Agent
-* Student 3 → Engineer + Marketing Agent
-
----
-
-## 🎯 Notes
-
-* API keys are stored securely in `.env` and not committed
-* System demonstrates real-world agent collaboration
-* Designed for academic and learning purposes
-
----
+- **GitHub Repository**: [Minahil-Tariq/launchmind-project](https://github.com/Minahil-Tariq/launchmind-project)
+- **Slack Workspace / Bot**: Add an invite link or view the message in the `#launches` channel on your workspace.
+- **Pull Request**: A PR is dynamically generated during the pipeline execution and its URL will print in the console!

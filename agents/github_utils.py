@@ -1,0 +1,151 @@
+import requests
+import os
+import base64
+from typing import Dict, Any, Tuple
+import datetime
+
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from utils.logger import log_step, log_error
+
+class GitHubAPIError(Exception):
+    pass
+
+def get_headers() -> Dict[str, str]:
+    token = os.environ.get("GITHUB_TOKEN")
+    if not token:
+        raise ValueError("GITHUB_TOKEN environment variable not set")
+    return {
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28"
+    }
+
+def get_base_sha(repo: str) -> str:
+    url = f"https://api.github.com/repos/{repo}/git/refs/heads/main"
+    log_step("EngineerAgent", "Fetch Base SHA", f"Fetching SHA for {repo}/main")
+    
+    response = requests.get(url, headers=get_headers())
+    if response.status_code != 200:
+        err_msg = f"Failed to get base SHA: {response.text}"
+        log_error("EngineerAgent", "Fetch Base SHA", Exception(err_msg))
+        raise GitHubAPIError(err_msg)
+        
+    data = response.json()
+    log_step("EngineerAgent", "Fetch Base SHA Success", payload=data)
+    return data["object"]["sha"]
+
+def create_branch(repo: str, branch_name: str, base_sha: str) -> None:
+    url = f"https://api.github.com/repos/{repo}/git/refs"
+    log_step("EngineerAgent", "Create Branch", f"Creating branch {branch_name} from {base_sha}")
+    
+    payload = {
+        "ref": f"refs/heads/{branch_name}",
+        "sha": base_sha
+    }
+    
+    response = requests.post(url, headers=get_headers(), json=payload)
+    if response.status_code != 201:
+        if "Reference already exists" not in response.text:
+            err_msg = f"Failed to create branch: {response.text}"
+            log_error("EngineerAgent", "Create Branch", Exception(err_msg))
+            raise GitHubAPIError(err_msg)
+
+def commit_file(repo: str, branch_name: str, file_path: str, content: str, message: str) -> None:
+    url = f"https://api.github.com/repos/{repo}/contents/{file_path}"
+    log_step("EngineerAgent", "Commit File", f"Committing {file_path} to {branch_name}")
+    
+    encoded_content = base64.b64encode(content.encode('utf-8')).decode('utf-8')
+    
+    payload = {
+        "message": message,
+        "content": encoded_content,
+        "branch": branch_name,
+        "author": {
+            "name": "EngineerAgent",
+            "email": "agent@launchmind.ai"
+        }
+    }
+    
+    response = requests.put(url, headers=get_headers(), json=payload)
+    if response.status_code not in (200, 201):
+        err_msg = f"Failed to commit file: {response.text}"
+        log_error("EngineerAgent", "Commit File", Exception(err_msg))
+        raise GitHubAPIError(err_msg)
+
+def create_issue(repo: str, title: str, body: str) -> str:
+    url = f"https://api.github.com/repos/{repo}/issues"
+    log_step("EngineerAgent", "Create Issue", f"Creating issue: {title}")
+    
+    payload = {
+        "title": title,
+        "body": body
+    }
+    
+    response = requests.post(url, headers=get_headers(), json=payload)
+    if response.status_code != 201:
+        err_msg = f"Failed to create issue: {response.text}"
+        log_error("EngineerAgent", "Create Issue", Exception(err_msg))
+        raise GitHubAPIError(err_msg)
+        
+    issue_url = response.json()["html_url"]
+    log_step("EngineerAgent", "Create Issue Success", f"Issue URL: {issue_url}")
+    return issue_url
+
+def open_pr(repo: str, branch_name: str, title: str, body: str) -> str:
+    url = f"https://api.github.com/repos/{repo}/pulls"
+    log_step("EngineerAgent", "Open PR", f"Opening PR for {branch_name}")
+    
+    payload = {
+        "title": title,
+        "body": body,
+        "head": branch_name,
+        "base": "main"
+    }
+    
+    response = requests.post(url, headers=get_headers(), json=payload)
+    
+    if response.status_code != 201:
+        err_msg = f"Failed to open PR: {response.text}"
+        log_error("EngineerAgent", "Open PR", Exception(err_msg))
+        raise GitHubAPIError(err_msg)
+        
+    pr_url = response.json()["html_url"]
+    log_step("EngineerAgent", "Open PR Success", f"PR URL: {pr_url}")
+    return pr_url
+
+def execute_github_flow(repo: str, html_content: str) -> Tuple[str, str]:
+    """
+    Executes the full GitHub workflow and returns (pr_url, issue_url).
+    """
+    log_step("EngineerAgent", "Start GitHub Flow", f"Target Repo: {repo}")
+    try:
+        base_sha = get_base_sha(repo)
+        
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        branch_name = f"agent-landing-page-{timestamp}"
+        
+        create_branch(repo, branch_name, base_sha)
+        
+        commit_file(
+            repo=repo, 
+            branch_name=branch_name, 
+            file_path="index.html", 
+            content=html_content, 
+            message="Add landing page generated by Engineer Agent"
+        )
+        
+        issue_title = "Initial landing page"
+        issue_body = "The Engineer agent has successfully generated the first version of the landing page."
+        issue_url = create_issue(repo, issue_title, issue_body)
+        
+        pr_title = "Initial landing page"
+        pr_body = "This PR introduces the landing page generated by the Engineer agent based on the product spec."
+        pr_url = open_pr(repo, branch_name, pr_title, pr_body)
+        
+        log_step("EngineerAgent", "End GitHub Flow", payload={"pr_url": pr_url, "issue_url": issue_url})
+        return pr_url, issue_url
+        
+    except Exception as e:
+        log_error("EngineerAgent", "GitHub Flow Failure", e)
+        raise
