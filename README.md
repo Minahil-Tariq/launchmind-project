@@ -106,15 +106,16 @@ This project integrates with real-world platforms:
 
 ## 💬 Slack Workspace
 
-Invite Link / Screenshots:
-(Add your Slack workspace invite link or screenshots here)
+Screenshots:
+<img width="959" height="537" alt="image" src="https://github.com/user-attachments/assets/e75708b6-ea72-4980-9bc6-ead76bd4d2a2" />
+
 
 ---
 
 ## 🔗 GitHub Pull Request
 
 Engineer Agent PR:
-(Add your PR link here)
+https://github.com/Minahil-Tariq/launchmind-project/pull/128
 
 ---
 
