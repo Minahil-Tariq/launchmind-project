@@ -50,7 +50,7 @@ Agents communicate using structured JSON messages via a message bus.
 ### 1. Clone the Repository
 
 ```
-git clone https://github.com/your-username/launchmind-project.git
+git clone https://github.com/Minahil-Tariq/launchmind-project.git
 cd launchmind-project
 ```
 
