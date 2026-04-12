@@ -100,4 +100,7 @@ python main.py
 
 - **GitHub Repository**: [Minahil-Tariq/launchmind-project](https://github.com/Minahil-Tariq/launchmind-project)
 - **Slack Workspace / Bot**: Add an invite link or view the message in the `#launches` channel on your workspace.
+  <img width="1919" height="1074" alt="Screenshot 2026-04-12 145931" src="https://github.com/user-attachments/assets/dde41360-f292-45c6-aaf2-84c44b4c2859" />
+
 - **Pull Request**: A PR is dynamically generated during the pipeline execution and its URL will print in the console!
+  https://github.com/Minahil-Tariq/launchmind-project/pull/132
