@@ -1,292 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Study Planner | Smart Study Planning</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 100px 0 80px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-        
-        .header p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        .features {
-            background: white;
-            padding: 80px 0;
-        }
-        
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 20px;
-        }
-        
-        .feature-card {
-            background: #f8f9fa;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-        
-        .feature-card p {
-            color: #666;
-        }
-        
-        .how-it-works {
-            background: #f0f4ff;
-            padding: 80px 0;
-        }
-        
-        .how-it-works h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-        }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            background: #667eea;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 20px;
-        }
-        
-        .signup {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .signup h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .signup-form {
-            max-width: 500px;
-            margin: 30px auto 0;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .signup-form input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        .signup-form button {
-            padding: 15px 30px;
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .signup-form button:hover {
-            background: #ff5252;
-        }
-        
-        .footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .signup-form {
-                flex-direction: column;
-            }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Smart Study Planner is an AI-powered study planner that auto-generates personalized study schedules based on exam deadlines, reducing stress and improving academic performance.">
+  <meta name="keywords" content="Smart Study Planner, AI-powered study planner, personalized study schedules, exam deadlines, stress-free studying">
+  <meta name="author" content="Your Name">
+  <meta property="og:title" content="Smart Study Planner">
+  <meta property="og:description" content="Smart Study Planner is an AI-powered study planner that auto-generates personalized study schedules based on exam deadlines, reducing stress and improving academic performance.">
+  <meta property="og:image" content="smartstudyplanner-logoscreen.png">
+  <meta property="og:url" content="https://smartstudyplanner.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@SmartStudyPlanner">
+  <meta name="theme-color" content="#202324">
+  <title>Smart Study Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Glassmorphism effect */
+    .glassmorphism {
+      background: #202324;
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+    }
+    .glassmorphism:hover {
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      transform: translateY(-5px);
+      
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Dark-mode color palette */
+    :root {
+      --primary-color: #3333ff;
+      --secondary-color: #66d9ef;
+      --background-color: #202324;
+      --text-color: #fff;
+      --accent-color: #ffd700;
+    }
+    
+    /* Card hover effect */
+    #card-1, #card-2, #card-3, #card-4 {
+      padding: 20px;
+      border-radius: 20px;
+      width: 400px;
+      height: 150px;
+      margin: 10px;
+      color: var(--text-color);
+    }
+    
+    /* Micro-animations */
+    button {
+      animation: pulse-button 1s infinite;
+      border-radius: 50%;
+    }
+    button:hover {
+      animation-duration: 0.5s;
+    }
+    
+    @keyframes pulse-button {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    /* Responsive design */
+    @media only screen and (max-width: 600px) {
+      .glassmorphism {
+        width: 90%;
+        margin: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <h1>Smart Study Planner</h1>
-            <p>Auto-generate study schedule based on deadlines and ace your exams!</p>
-            <a href="#" class="cta-button">Start Planning Free →</a>
-        </div>
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#" class="glassmorphism">Home</a></li>
+        <li><a href="#" class="glassmorphism">Features</a></li>
+        <li><a href="#" class="glassmorphism">Pricing</a></li>
+        <li><a href="#" class="glassmorphism">About</a></li>
+        <li><a href="#" class="glassmorphism">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hero">
+      <h1>Smart Study Planner</h1>
+      <p class="subheading">Auto-generate personalized study schedules based on exam deadlines and reduce stress and improve academic performance.</p>
+      <button class="cta" id="cta-button">Get Started for Free!</button>
     </div>
-    
-    <div class="features">
-        <div class="container">
-            <h2>Key Features</h2>
-            <div class="feature-grid">
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Add Subjects</h3>
-                    <p>Add all your courses and exam dates</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Smart Schedule</h3>
-                    <p>AI generates optimal study plan</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Daily Planner</h3>
-                    <p>View and track daily tasks</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Reminders</h3>
-                    <p>Get notified about upcoming studies</p>
-                </div>
-                
-            </div>
+  </header>
+  <main>
+    <section class="features">
+      <h2>Our Key Features</h2>
+      <div class="feature-grid">
+        <div id="card-1" class="glassmorphism">
+          <h3>Exam Deadline Tracker</h3>
+          <p>Input exam deadlines and track upcoming assignments in a clean and organized manner.</p>
         </div>
-    </div>
-    
-    <div class="how-it-works">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Add Your Subjects</h3>
-                    <p>List all your courses and upcoming exams</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Set Deadlines</h3>
-                    <p>Input exam dates and assignment deadlines</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Get Your Schedule</h3>
-                    <p>AI generates your personalized study plan</p>
-                </div>
-            </div>
+        <div id="card-2" class="glassmorphism">
+          <h3>Personalized Study Scheduling</h3>
+          <p>Auto-generate study plans tailored to individual learning styles and needs.</p>
         </div>
-    </div>
-    
-    <div class="signup">
-        <div class="container">
-            <h2>Ready to Ace Your Exams?</h2>
-            <p>Join thousands of students who study smarter, not harder</p>
-            <form class="signup-form">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Get Started Free</button>
-            </form>
+        <div id="card-3" class="glassmorphism">
+          <h3>Customizable Study Calendar</h3>
+          <p>View and edit study schedules on a calendar interface for easy management.</p>
         </div>
-    </div>
-    
-    <div class="footer">
-        <div class="container">
-            <p>&copy; 2025 Smart Study Planner. All rights reserved.</p>
+        <div id="card-4" class="glassmorphism">
+          <h3>Progress Tracking</h3>
+          <p>Monitor study progress and identify areas for improvement.</p>
         </div>
-    </div>
+      </div>
+    </section>
+    <section class="how-it-works">
+      <h2>How It Works</h2>
+      <div class="step-grid">
+        <div class="step-1">
+          <h3>Step 1: Input Exam Deadlines</h3>
+          <p>Enter exam deadlines and track upcoming assignments.</p>
+          <img src="exam-deadlines-step.png" alt="Exam Deadlines Step">
+        </div>
+        <div class="step-2">
+          <h3>Step 2: Generate Study Schedule</h3>
+          <p>Auto-generate a personalized study schedule based on exam deadlines.</p>
+          <img src="study-schedule-step.png" alt="Study Schedule Step">
+        </div>
+        <div class="step-3">
+          <h3>Step 3: Customize Study Calendar</h3>
+          <p>View and edit study schedules on a calendar interface.</p>
+          <img src="calendar-step.png" alt="Calendar Step">
+        </div>
+      </div>
+    </section>
+    <section class="email-sign-up">
+      <h2>Join Our Community</h2>
+      <p>Get access to exclusive content and stay updated on the latest study tips and tricks.</p>
+      <form id="email-form">
+        <input type="email" placeholder="Enter your email address">
+        <button id="email-button">Sign Up</button>
+      </form>
+      <p id="email-status"></p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Smart Study Planner. All Rights Reserved.</p>
+    <a href="#" class="glassmorphism">Privacy Policy</a>
+    <a href="#" class="glassmorphism">Terms of Service</a>
+  </footer>
+
+  <script>
+    const emailForm = document.getElementById('email-form');
+    const emailButton = document.getElementById('email-button');
+    const emailStatus = document.getElementById('email-status');
+
+    emailButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      emailStatus.innerHTML = 'Loading...';
+      setTimeout(() => {
+        emailStatus.innerHTML = 'You have successfully signed up!';
+        emailForm.reset();
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
